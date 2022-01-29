@@ -1,0 +1,14 @@
+﻿on_game_start_after_lobby = {
+	on_actions = {
+		ZIMHO_compat
+	}
+}
+
+IMHO_compat = {
+	effect = {
+		set_global_variable = {
+			name = IMHO_is_loaded
+			value = yes
+		}
+	}
+}

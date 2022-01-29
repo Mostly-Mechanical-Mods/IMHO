@@ -1,0 +1,71 @@
+######################################################
+################## PORTRAIT TYPES ####################
+######################################################
+
+types IMHOPortraitTypes
+{
+
+    ## Opinion box for portraits
+    type portrait_opinion = flowcontainer {
+        name = "tutorial_highlight_portrait_opinion"
+        visible = "[And(Character.IsValid, And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
+        ignoreinvisible = yes
+
+        background = {
+            name = "portrait_opinion_bg"
+            texture = "gfx/interface/component_tiles/solid_black_label.dds"
+            spritetype = Corneredtiled
+            spriteborder = { 20 20 }
+            margin = { 3 1 }
+            texture_density = 2
+        }
+
+        block "opinion_box" {
+            icon = {
+                block "dread_logic" {
+                    visible = "[Character.ShouldShowDreadEffectIcon]"
+                    frame = "[Character.GetPlayerDreadEffectIconFrame]"
+                    tooltip = "[Character.GetPlayerDreadEffectTooltip]"
+                }
+                name = "dread"
+                size = { 20 20 }
+                texture = "gfx/interface/icons/portraits/dread_values.dds"
+                framesize = { 40 40 }
+            }
+
+            text_single = {
+                name = "tutorial_highlight_character_view_opinion"
+                visible = "[Character.IsValid]"
+                max_width = 45
+                align = nobaseline
+                margin = { 3 0 }
+                tooltipwidget = character_opinion_tooltip
+                using = tooltip_es
+                default_format = "#true_white"
+
+                block "opinion_text" {
+                    text = "[Character.GetOpinionOf( GetPlayer )|=]"
+                    fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
+                }
+            }
+
+            block "player_opinion" {
+                text_single = {
+                    name = "tutorial_highlight_character_view_opinion_player"
+                    visible = "[Character.IsValid]"
+                    max_width = 45
+                    align = nobaseline
+                    margin = { 3 0 }
+                    tooltipwidget = character_opinion_tooltip_player
+                    using = tooltip_es
+                    # default_format = "#true_white"
+
+                    block "opinion_text_player" {
+                        text = "[GetPlayer.GetOpinionOf( Character.Self )|=]"
+                        fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
+                    }
+                }
+            }
+        }
+    }
+}
