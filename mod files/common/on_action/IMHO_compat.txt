@@ -1,6 +1,6 @@
 ﻿on_game_start_after_lobby = {
 	on_actions = {
-		ZIMHO_compat
+		IMHO_compat
 	}
 }
 
