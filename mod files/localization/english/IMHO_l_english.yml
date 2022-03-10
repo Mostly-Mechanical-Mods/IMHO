@@ -1,0 +1,5 @@
+﻿l_english:
+
+  IMHO_PoV: "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetShortUINamePossessive] opinion:"
+  IMHO_set_PoV_TT: "#T Show character's opinions\n#!Track this character's opinion of other characters"
+  IMHO_reset_PoV_TT: "#T Hide character's opinions\n#!Stop tracking this character's opinion of other characters"

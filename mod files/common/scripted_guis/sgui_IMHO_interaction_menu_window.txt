@@ -1,34 +1,24 @@
-﻿sgui_imho_set_character = {
+﻿sgui_IMHO_set_PoV = {
 	scope = character
 	saved_scopes = {
 		character
 	}
-	is_valid = {
-		trigger_if = {
-			limit = { has_variable = imho_character_PoV }
-			NOT = { var:imho_character_PoV = scope:character }
-		}
-	}
+
 	is_shown = {
 
 	}
 	effect = {
 		set_variable = {
-			name = imho_character_PoV
+			name = IMHO_PoV
 			value = scope:character
 		}
 	}
 }
 
-sgui_imho_reset_character = {
+sgui_IMHO_reset_PoV = {
 	scope = character
-	is_valid = {
-		has_variable = imho_character_PoV
-	}
-	is_shown = {
 
-	}
 	effect = {
-		remove_variable = imho_character_PoV
+		remove_variable = IMHO_PoV
 	}
 }

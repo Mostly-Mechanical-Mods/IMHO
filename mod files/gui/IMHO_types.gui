@@ -136,7 +136,7 @@ template character_opinion_tooltip_PoV {
 				text_single = {
 					# block "ott_heading_text"
 					# {
-						text = "[GetPlayer.MakeScope.Var('imho_character_PoV').Char.GetOpinionHeadingText( Character.Self )]"
+						text = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionHeadingText( Character.Self )]"
 					# }
 
 					using = Font_Size_Medium
@@ -158,8 +158,8 @@ template character_opinion_tooltip_PoV {
 
 					# block "ott_opinion_value_text"
 					# {
-						text = "[GetPlayer.MakeScope.Var('imho_character_PoV').Char.GetOpinionOf( Character.Self )|=]"
-						fonttintcolor = "[GetPlayer.MakeScope.Var('imho_character_PoV').Char.GetOpinionOfTint( Character.Self )]"
+						text = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionOf( Character.Self )|=]"
+						fonttintcolor = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionOfTint( Character.Self )]"
 					# }
 
 					default_format = "#true_white"
@@ -205,7 +205,7 @@ template character_opinion_tooltip_PoV {
 				text_multi = {
 					# block "ott_opinion_breakdown_text"
 					# {
-						text = "[GetPlayer.MakeScope.Var('imho_character_PoV').Char.GetOpinionBreakdownText( Character.Self )]"
+						text = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionBreakdownText( Character.Self )]"
 					# }
 
 					autoresize = yes
@@ -213,6 +213,68 @@ template character_opinion_tooltip_PoV {
 				}
 
 				expand = {}
+			}
+		}
+	}
+}
+
+template UniUI_IMHO_window_character_liege_blockoverride {
+	blockoverride "player_opinion"
+	{
+	}
+}
+
+types IMHO {
+	type UniUI_IMHO_button = button_icon {
+		visible = "[And(Not(GetPlayer.MakeScope.Var('IMHO_PoV').IsSet),And(Not(ObjectsEqual( Character.Self, GetPlayer.Self )),Not(CharacterInteractionMenuWindow.OutsideDiplomaticRange)))]"
+		name = "IMHO_set_PoV_button"
+		onclick = "[GetScriptedGui('sgui_IMHO_set_PoV').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'character', Character.MakeScope ).End)]"
+		size = { 25 25 }
+	
+
+		tooltip = "IMHO_set_PoV_TT"
+		using = tooltip_se
+
+		texture = "gfx/interface/flat_icons/IMHO_health.dds"
+		framesize = { 60 60 }
+	}
+
+	type UniUI_IMHO_PoV = widget {
+		datacontext = "[CharacterInteractionMenuWindow.GetCharacter]"
+		size = { 317 40 }
+		visible = "[GetPlayer.MakeScope.Var('IMHO_PoV').IsSet]"
+		# tooltip = character_opinion_tooltip_PoV
+
+		hbox = {
+			margin = { 10 0 }
+			layoutpolicy_horizontal = expanding
+			button_icon = {
+				name = "IMHO_reset_PoV_button"
+				onclick = "[GetScriptedGui('sgui_IMHO_reset_PoV').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End)]"
+				size = { 25 25 }
+			
+
+				tooltip = "IMHO_reset_PoV_TT"
+				using = tooltip_se
+
+				texture = "gfx/interface/flat_icons/IMHO_health.dds"
+				framesize = { 60 60 }
+			}
+			spacer = {
+				size = { 5 0 }
+			}
+			text_single = {
+				name = "IMHO_PoV"
+				text = "IMHO_PoV"
+			}
+			expand = {}
+			text_label_center = {
+				name = "IMHO_PoV_value"
+				tooltipwidget = character_opinion_tooltip_PoV
+				using = tooltip_es
+				text = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionOf( Character.Self )|=]"
+				fonttintcolor = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionOfTint( Character.Self )]"
+				default_format = "#true_white"
 			}
 		}
 	}

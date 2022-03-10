@@ -1,0 +1,12 @@
+﻿namespace = IMHO_error_suppression
+
+IMHO_error_suppression.0001 = {
+	hidden = yes
+	orphan = yes
+
+	immediate = {
+		fix_variable_error = { X = IMHO_mod_version }
+		fix_variable_error = { X = IMHO_vanilla_version }
+		fix_variable_error = { X = IMHO_is_loaded }
+	}
+}

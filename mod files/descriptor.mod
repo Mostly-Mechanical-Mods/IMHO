@@ -1,9 +1,8 @@
-version="0.1.1"
+version="1.1"
 tags={
 	"Balance"
 	"Gameplay"
 }
 name="In My Humble Opinion"
-supported_version="1.4.4"
-path="C:/Users/manue/Documents/Mods/CK3/IMHO/mod files"
+supported_version="1.5.*"
 remote_file_id="2625307328"

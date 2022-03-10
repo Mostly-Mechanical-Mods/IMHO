@@ -1,0 +1,6 @@
+﻿IMHO_error_suppression = {
+	scope = character
+	is_valid = {
+		has_variable = IMHO_is_loaded
+	}
+}

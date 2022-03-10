@@ -49,7 +49,8 @@ types IMHOPortraitTypes
                 }
             }
 
-            block "player_opinion" {
+            block "IMHO_player_opinion" {
+
                 text_single = {
                     name = "tutorial_highlight_character_view_opinion_player"
                     visible = "[Character.IsValid]"
@@ -60,7 +61,7 @@ types IMHOPortraitTypes
                     using = tooltip_es
                     # default_format = "#true_white"
 
-                    block "opinion_text_player" {
+                    block "IMHO_opinion_text_player" {
                         text = "[GetPlayer.GetOpinionOf( Character.Self )|=]"
                         fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
                     }
