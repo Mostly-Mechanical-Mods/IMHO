@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+ IMHO_PoV: "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetShortUINamePossessive]好感："
+ IMHO_set_PoV_TT: "#T 显示角色的好感\n#!追踪这个角色对他人的好感"
+ IMHO_reset_PoV_TT: "#T 隐藏角色的好感\n#!停止追踪这个角色对他人的好感"
