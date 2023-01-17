@@ -4,5 +4,5 @@ tags={
 	"Gameplay"
 }
 name="In My Humble Opinion"
-supported_version="1.6.*"
+supported_version="1.8.*"
 remote_file_id="2625307328"
