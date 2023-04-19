@@ -98,7 +98,7 @@ window = {
 							tooltip = "CV_CUSTOMIZE_PORTRAIT"
 							using = tooltip_ne
 						}
-
+						
 						button_edit_text = {
 							name = "button_rename"
 							datacontext = "[GetScriptedGui( 'rename_character_after_birth' )]"
@@ -112,7 +112,7 @@ window = {
 						
 						button_go_to_my_location = {
 							name = "button_go_to_my_location"
-							onclick = "[Character.PanCameraTo]"
+							onclick = "[CharacterInteractionMenuWindow.GoToCharacter]"
 							size = { 25 25 }
 
 							tooltip = "GOTO_CHARACTER"
