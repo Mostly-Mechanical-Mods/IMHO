@@ -1,0 +1,3 @@
+﻿IMHO_is_loaded = { NOT = { has_game_rule = IMHO_is_not_loaded }}
+
+IMHO_debug = { has_game_rule = BMU_is_loaded_debug }
