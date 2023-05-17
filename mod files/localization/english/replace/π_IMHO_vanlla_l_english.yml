@@ -1,0 +1,4 @@
+﻿l_english:
+
+AI_PERSONALITY_CONCEPT_TT:0 "[SelectLocalization(Not(Character.IsLocalPlayer),'AI_PERSONALITY_CONCEPT_TT_vanilla','')]"
+AI_PERSONALITY_CONCEPT_TT_vanilla: "#weak [Character.GetShortUINameNoTooltip] will act towards you and others according to [Character.GetHerHis] Personality, which is primarily determined by [Character.GetHerHis] [personality_traits|E]#!"

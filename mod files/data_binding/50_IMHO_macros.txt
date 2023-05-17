@@ -1,0 +1,17 @@
+﻿macro = {
+	description = "Is IMHO loaded"
+	definition = "IMHOIsLoaded"
+	replace_with = "Not(GetGameRules.HasRuleWithFlag('IMHO_is_not_loaded'))"
+}
+
+macro = {
+	description = "Is IMHO Third-Party Opinion enabled"
+	definition = "IMHOThirdPlayerOpinionEnabled"
+	replace_with = "And( Not(GetGameRules.HasRuleWithFlag('IMHO_is_not_loaded')), GetGameRules.HasRuleWithFlag('IMHO_pov_opinion_enabled') )"
+}
+
+macro = {
+	description = "Is the character the host of the activity"
+	definition = "IMHOPlayerPersonalityEnabled"
+	replace_with = "And( Not(GetGameRules.HasRuleWithFlag('IMHO_is_not_loaded')), GetGameRules.HasRuleWithFlag('IMHO_player_personality_enabled') )"
+}

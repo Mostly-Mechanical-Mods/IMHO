@@ -264,9 +264,11 @@ window = {
 						text = "[Character.GetOpinionBreakdownText( CharacterWindow.GetCharacter.GetLiege )]"
 					}
 					# [UniUI] [IMHO]
-					blockoverride "IMHO_player_opinion"
-					{
-					}
+					blockoverride "IMHO_opinion_text_player" {
+						text = "[Character.GetLiege.GetOpinionOf( Character.Self )|=]"
+                        fonttintcolor = "[GetPlayer.GetOpinionOfTint( Character.Self )]"
+						tooltipwidget = character_opinion_tooltip_liege
+                    }
 					# [/IMHO] [/UniUI]
 				}
 			}
@@ -567,7 +569,7 @@ window = {
 					}
 
 					button_barbershop = {
-						#visible = "[Character.CanCustomizePortrait]"
+						visible = "[Character.CanCustomizePortrait]"
 						onclick = "[Character.OnCustomizePortrait]"
 						onclick = "[CharacterInteractionMenuWindow.Close]"
 						size = { 25 25 }
@@ -3343,7 +3345,7 @@ types CharacterWindow
 			text_single = {
 				maximumsize = { 149 -1 }
 				name = "ai_personality"
-				visible = "[Not( Character.IsPlayer )]"
+				using = IMHO_player_personality_enabled
 
 				raw_text = " • #L [Character.GetAIPersonalityNoTooltip]#!"
 				tooltip = "AI_PERSONALITY_TT"

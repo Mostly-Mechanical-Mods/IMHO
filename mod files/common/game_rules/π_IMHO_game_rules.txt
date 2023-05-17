@@ -1,0 +1,57 @@
+﻿IMHO_loaded = {
+	
+	categories = {
+		mod_toggle mostly_mechanical_mods mmm_imho
+	}
+	
+	default = IMHO_is_loaded
+
+	IMHO_is_loaded = {
+		flag = GG_can_change_rule
+	}
+
+	IMHO_is_loaded_debug = {
+		flag = GG_can_change_rule
+	}
+	
+	IMHO_is_not_loaded = {
+		flag = GG_can_change_rule
+		flag = IMHO_is_not_loaded
+	}
+}
+
+IMHO_player_personality = {
+
+	categories = {
+		mostly_mechanical_mods mmm_imho
+	}
+
+	default = IMHO_player_personality_enabled
+
+	IMHO_player_personality_enabled = {
+		flag = GG_can_change_rule
+		flag = IMHO_player_personality_enabled
+	}
+
+	IMHO_player_personality_disabled = {
+		flag = GG_can_change_rule
+	}
+}
+
+IMHO_pov_opinion = {
+
+	categories = {
+		mostly_mechanical_mods mmm_imho
+	}
+
+	default = IMHO_pov_opinion_enabled
+
+	IMHO_pov_opinion_enabled = {
+		flag = GG_can_change_rule
+		flag = IMHO_pov_opinion_enabled
+	}
+
+	IMHO_pov_opinion_disabled = {
+		flag = GG_can_change_rule
+	}
+}

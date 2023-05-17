@@ -20,13 +20,13 @@ template character_opinion_tooltip_player {
 				spacing = 3 #ugly hack to get a space between label and value
 
 				background = {
-					using = Background_Area_Dark
+					using = Background_Area
 				}
 
 				text_single = {
 					# block "ott_heading_text"
 					# {
-						text = "[GetPlayer.GetOpinionHeadingText( Character.Self )]"
+						raw_text = "@opinion_icon! [GetPlayer.GetOpinionHeadingText( Character.Self )]"
 					# }
 
 					using = Font_Size_Medium
@@ -130,13 +130,13 @@ template character_opinion_tooltip_PoV {
 				spacing = 3 #ugly hack to get a space between label and value
 
 				background = {
-					using = Background_Area_Dark
+					using = Background_Area
 				}
 
 				text_single = {
 					# block "ott_heading_text"
 					# {
-						text = "[GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionHeadingText( Character.Self )]"
+						raw_text = "@opinion_icon! [GetPlayer.MakeScope.Var('IMHO_PoV').Char.GetOpinionHeadingText( Character.Self )]"
 					# }
 
 					using = Font_Size_Medium
@@ -218,15 +218,137 @@ template character_opinion_tooltip_PoV {
 	}
 }
 
+template character_opinion_tooltip_liege {
+	widget = {
+		using = GeneralTooltipSetup
+		using = DefaultTooltipBackground
+		alwaystransparent = no
+
+		vbox = {
+			set_parent_size_to_minimum = yes
+
+			margin = { 8 8 }
+
+			spacing = 2
+
+			hbox = {
+				name = "heading"
+				layoutpolicy_horizontal = expanding
+
+				margin = {8 8}
+
+				spacing = 3 #ugly hack to get a space between label and value
+
+				background = {
+					using = Background_Area
+				}
+
+				text_single = {
+					# block "ott_heading_text"
+					# {
+						raw_text = "@opinion_icon! [Character.GetLiege.GetOpinionHeadingText( Character.Self )]"
+					# }
+
+					using = Font_Size_Medium
+					align = nobaseline
+				}
+
+				text_single = {
+					background = {
+						name = "portrait_opinion_bg"
+						texture = "gfx/interface/component_tiles/solid_black_label.dds"
+						spritetype = Corneredtiled
+						spriteborder = { 20 20 }
+						texture_density = 2
+						margin = { 3 1 }
+					}
+
+					max_width = 45
+					align = nobaseline
+
+					# block "ott_opinion_value_text"
+					# {
+						text = "[Character.GetLiege.GetOpinionOf( Character.Self )|=]"
+						fonttintcolor = "[Character.GetLiege.GetOpinionOfTint( Character.Self )]"
+					# }
+
+					default_format = "#true_white"
+					using = Font_Size_Medium
+				}
+
+				expand = {}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = {8 0}
+				visible = "[Character.IsPlayer]"
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Not( Character.IsLocalPlayer )]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT"
+					default_format = "#weak"
+				}
+
+				text_multi = {
+					datacontext = "[Character]"
+					visible = "[Character.IsLocalPlayer]"
+
+					autoresize = yes
+					max_width = 400
+					text = "PLAYER_OPINION_UNIMPORTANT_SELF"
+					default_format = "#weak"
+				}
+
+				expand = {}
+			}
+
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = {8 0}
+
+				text_multi = {
+					# block "ott_opinion_breakdown_text"
+					# {
+						text = "[Character.GetLiege.GetOpinionBreakdownText( Character.Self )]"
+					# }
+
+					autoresize = yes
+					max_width = 400
+				}
+
+				expand = {}
+			}
+		}
+	}
+}
+
 template UniUI_IMHO_window_character_liege_blockoverride {
 	blockoverride "player_opinion"
 	{
 	}
 }
 
+template IMHO_is_loaded {
+	visible = "[IMHOIsLoaded]"
+}
+
+template IMHO_pov_opinion_enabled {
+	visible = "[Or(Not(Character.IsLocalPlayer),IMHOThirdPlayerOpinionEnabled)]"
+}
+
+template IMHO_player_personality_enabled {
+	visible = "[IMHOPlayerPersonalityEnabled]"
+}
+
 types IMHO {
 	type UniUI_IMHO_button = button_icon {
-		visible = "[And(Not(GetPlayer.MakeScope.Var('IMHO_PoV').IsSet),And(Not(ObjectsEqual( Character.Self, GetPlayer.Self )),Not(CharacterInteractionMenuWindow.OutsideDiplomaticRange)))]"
+		visible = "[And(IMHOThirdPlayerOpinionEnabled,And(Not(GetPlayer.MakeScope.Var('IMHO_PoV').IsSet),And(Not(ObjectsEqual( Character.Self, GetPlayer.Self )),Not(CharacterInteractionMenuWindow.OutsideDiplomaticRange))))]"
 		name = "IMHO_set_PoV_button"
 		onclick = "[GetScriptedGui('sgui_IMHO_set_PoV').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'character', Character.MakeScope ).End)]"
 		size = { 25 25 }
@@ -242,7 +364,7 @@ types IMHO {
 	type UniUI_IMHO_PoV = widget {
 		datacontext = "[CharacterInteractionMenuWindow.GetCharacter]"
 		size = { 317 40 }
-		visible = "[GetPlayer.MakeScope.Var('IMHO_PoV').IsSet]"
+		visible = "[And(IMHOThirdPlayerOpinionEnabled,GetPlayer.MakeScope.Var('IMHO_PoV').IsSet)]"
 		# tooltip = character_opinion_tooltip_PoV
 
 		hbox = {
