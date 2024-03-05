@@ -8,7 +8,7 @@ types IMHOPortraitTypes
     ## Opinion box for portraits
     type portrait_opinion = flowcontainer {
         name = "tutorial_highlight_portrait_opinion"
-        visible = "[And(IMHOIsLoaded,And(Character.IsValid, And(Character.IsAlive, Not(Character.IsLocalPlayer))))]"
+        visible = "[And(Character.IsValid, And(Character.IsAlive, Not(Character.IsLocalPlayer)))]"
         ignoreinvisible = yes
 
         background = {
